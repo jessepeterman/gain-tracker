@@ -1,0 +1,42 @@
+.box-layout {
+  background: url('/images/action-athlete-barbell-1400-933.jpg');
+  // @media (max-width: 1500px){
+  //   background:url(/images/action-athlete-barbell-4000.jpg);  
+  //   background-size: cover;
+  // }
+  // @media (max-width: 1200px){
+  //   background:url(/images/action-athlete-barbell-3000.jpg);  
+  //   background-size: cover;
+  // }
+  // @media (max-width: 900px){
+  //   background:url(/images/action-athlete-barbell-2000.jpg);  
+  //   background-size: cover;
+  // }
+  // @media (max-width: 600px){
+  //   background:url(/images/action-athlete-barbell-1500.jpg);  
+  //   background-size: cover;
+  // }
+    
+  background-position: 50% 50%;
+  background-size: cover;
+  max-width: 3000px;
+  
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+.box-layout__box {
+  background: fade-out(white, .15);
+  border-radius: 3px;
+  padding: $l-size $m-size;
+  text-align: center;
+  width: 25rem;
+}
+
+.box-layout__title {
+  margin: 0 0 $m-size 0;
+  line-height: 1; 
+}
