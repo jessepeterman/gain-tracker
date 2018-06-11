@@ -1,0 +1,8 @@
+
+Gain tracker features
+- check for last work of same name to preload defaults for next workout, if not have blank, 0, or start at a general number.
+- add graphics/animations for adding weights in AddWorkout page
+- create graph/chart per workout/with all workouts on Summary page
+- 
+- 
+- convert to react native app and put on iOS?

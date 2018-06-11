@@ -1,11 +1,29 @@
 .entry{
   display: flex;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
-  display: column;
-  color: beige;
-  width: 30rem;
+  color: black;
+  font-weight: 500;
+  width: 20rem;
   margin-left: auto;
   margin-right: auto;
+}
+
+.entry-item {
+  margin-bottom: 1rem;
+}
+
+.entry-input{
+  width: 6rem;
+}
+
+.workout__title{
+margin-top: 0;
+}
+
+.message {
+  margin: 1rem 0 0 0;
+  color: red;
+  font-style: italic; 
+  text-align: center;
 }

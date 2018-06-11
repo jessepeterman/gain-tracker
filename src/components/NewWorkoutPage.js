@@ -1,19 +1,45 @@
 import React from 'react';
-import moment from 'moment';
+import NewWorkoutForm from './NewWorkoutForm';
+import { connect } from 'react-redux';
+import {startAddWorkout} from '../actions/workouts';
 
-const NewWorkoutPage = () => (
-  <div className="content-container">
-  <div className="content-title">
-      <h1>Today's Workout: {moment().format("MM/DD/Y")}</h1>
-    </div>
-  <form className="entry" onSubmit="">
-    <input placeholder="Exercise name" />
-    <input placeholder="Weight in lbs" />
-    <input placeholder="Sets" />
-    <input placeholder="Reps" />
-    <button >Save Workout</button>
-  </form>
-  </div>
-);
+export class NewWorkoutPage extends React.Component {
+  constructor(props){
+    super(props);
 
-export default NewWorkoutPage;
+    this.state = {
+      message: false
+    };
+  }
+  
+  
+  onSubmit = (newWorkout) => {
+    this.props.startAddWorkout(newWorkout);
+    this.setState((prevState) => {
+      return { message: true }
+    });
+    setTimeout(() => {
+      this.setState((prevState) => {
+        return { message: false }
+      });
+    }, 1500);
+    // this.props.history.push('/dashboard');
+  };
+
+  render() {
+    return ( 
+      <div>
+        {
+          this.state.message &&  <p className="message">Workout saved</p>
+        }
+        <NewWorkoutForm onSubmit = { this.onSubmit } />
+        </div>
+    )
+  }
+}
+
+const mapDispatchToProps = (dispatch) => ({
+  startAddWorkout: (workout) => dispatch(startAddWorkout(workout))
+})
+
+export default connect(undefined, mapDispatchToProps)(NewWorkoutPage);
