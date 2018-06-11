@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import WorkoutItem from './WorkoutItem';
+import Graph from './Graph';
 // import selectWorkouts from "../selectors/Workouts";
 
 export const WorkoutList = (props) => (
@@ -10,15 +11,24 @@ export const WorkoutList = (props) => (
       !props.lastWorkout ? (
         <div> <span><em>No recent workout activity</em></span></div>
       ) : (
+        <div>
           <WorkoutItem
             key={props.lastWorkout.id}
             {...props.lastWorkout}
           />
+            <Graph />
+          </div>
         )
     }
     </div>
     
     <hr />
+
+    <div className="graph">
+      {/* <Graph workouts={props.workouts}/> */}
+    </div>
+
+
     Most recent activity:
     <div className="card-container"> 
       {
@@ -30,6 +40,8 @@ export const WorkoutList = (props) => (
       ))
     }
     </div>
+
+
   </div> 
 );
 
