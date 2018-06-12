@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import WorkoutItem from './WorkoutItem';
 import Graph from './Graph';
 // import selectWorkouts from "../selectors/Workouts";
@@ -11,6 +12,7 @@ export const WorkoutList = (props) => (
       !props.lastWorkout ? (
         <div> <span><em>No recent workout activity</em></span></div>
       ) : (
+        <Link to="/edit">
         <div>
           <WorkoutItem
             key={props.lastWorkout.id}
@@ -18,6 +20,7 @@ export const WorkoutList = (props) => (
           />
             <Graph />
           </div>
+          </Link>
         )
     }
     </div>

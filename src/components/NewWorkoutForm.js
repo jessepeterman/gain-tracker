@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import NumericInput from 'react-numeric-input';
+import {SingleDatePicker} from 'react-dates';
 
 const now = moment();
 
@@ -14,7 +15,8 @@ export default class NewWorkoutForm extends React.Component {
       sets: 3,
       reps: 5,
       note: '',
-      date: ''
+      date: moment(),
+      calendarFocused: false
     }
   }
   
@@ -39,6 +41,12 @@ export default class NewWorkoutForm extends React.Component {
     const note = e.target.value;
     this.setState(() => ({note}));
   }
+  onDateChange = (date) => {
+    this.setState(() => ({date}));
+  }
+  onFocusChange = ({focused}) => {
+    this.setState(() => ({ calendarFocused: focused}));
+  }
   onSubmit = (e) => {
     e.preventDefault();
     this.props.onSubmit({
@@ -47,7 +55,7 @@ export default class NewWorkoutForm extends React.Component {
       sets: this.state.sets,
       reps: this.state.reps,
       note: this.state.note,
-      date: moment().format("x")
+      date: this.state.date.valueOf()
     });
   };
 
@@ -55,7 +63,15 @@ render() {
   return (
  <div className="content-container">
   <div className="content-title">
-    <h1 className="workout__title">Today's Workout: {moment().format("MM/DD/Y")}</h1>
+    <h1 className="workout__title">Today's Workout</h1>
+    <SingleDatePicker 
+      date={this.state.date}
+      onDateChange={this.onDateChange}
+      focused={this.state.calendarFocused}
+      onFocusChange={this.onFocusChange}
+      numberOfMonths={1}
+      isOutsideRange={() => {true}}
+      />
   </div>
   <form className="entry" onSubmit={this.onSubmit}>
         {/* <input className="entry-item" placeholder="Exercise name" onChange={this.onNameChange} /> */}
