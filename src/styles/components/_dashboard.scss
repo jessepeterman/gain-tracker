@@ -1,0 +1,23 @@
+.dashboard-header {
+  justify-content: space-around;
+  display: flex;
+  flex-direction: row;
+}
+
+.dashboard-header__labels{
+
+}
+
+
+.dashboard-header > div > span{
+  font-size: 4rem;
+  line-height: 1;
+}
+
+.dashboard-header__label-subitem{
+  font-size: 2.6rem;
+}
+
+// .dashboard-header__max{
+//   font-size: 3rem;
+// }
