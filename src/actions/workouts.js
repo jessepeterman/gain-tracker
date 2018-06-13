@@ -14,8 +14,8 @@ export const startAddWorkout = (workoutData = {}) => {
       weight = '',
       sets = 0,
       reps = 0,
-      date = '',
-      note =''
+      note = '',
+      date = ''
     } = workoutData;
     const workout = { name, weight, sets, reps, note, date };
 

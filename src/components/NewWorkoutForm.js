@@ -70,7 +70,7 @@ render() {
       focused={this.state.calendarFocused}
       onFocusChange={this.onFocusChange}
       numberOfMonths={1}
-      isOutsideRange={() => {true}}
+      isOutsideRange={() => {false}}
       />
   </div>
   <form className="entry" onSubmit={this.onSubmit}>

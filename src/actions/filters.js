@@ -1,17 +1,23 @@
 
+export const setTextFilter = (text = '') => ({
+  type: 'SET_TEXT_FILTER',
+  text
+})
+
 export const sortByDate = () => ({
   type: 'SORT_BY_DATE'
 });
 
-// export const sortByWorkoutName = () => ({
-//   type: 'SORT_BY_NAME'
-// });
+export const sortByName = () => ({
+  type: 'SORT_BY_NAME'
+});
 
-// export const setStartDate = (startDate) => ({
-//   type: 'SET_START_DATE',
-//   startDate
-// });
-// export const setEndDate = (endDate) => ({
-//   type: 'SET_END_DATE',
-//   endDate
-// });
+export const setStartDate = (startDate) => ({
+  type: 'SET_START_DATE',
+  startDate
+});
+
+export const setEndDate = (endDate) => ({
+  type: 'SET_END_DATE',
+  endDate
+});

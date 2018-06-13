@@ -2,7 +2,11 @@
 Gain tracker features
 - check for last work of same name to preload defaults for next workout, if not have blank, 0, or start at a general number.
 - add graphics/animations for adding weights in AddWorkout page
-- create graph/chart per workout/with all workouts on Summary page
+- create graph/chart per workout/with all workouts on Summary page (or last 6 months, or yaer summarized)
 - 
 - Add chat/social media post/comment feature page. Q/A discussion
 - convert to react native app and put on iOS?
+
+** UI changes
+- Make dashboard look good, with summary of highest lifts (and date?)
+
