@@ -27,16 +27,18 @@ export const WorkoutList = (props) => (
         />
       ))
     } */}
-    <div className="card-container"> 
-      <div className="workout-card">
+    <div className="content-container"> 
+      <div className="dashboard-header">
         {/* Max Weight for {props.text}: {selectMaxWorkout(selectNameFilter(props.workouts, props.text))}lbs */}
-        <strong>Max Weight <br /> {'Bench'}:</strong> {selectMaxWorkout(selectNameFilter(props.workouts, 'Bench'))}lbs<br />
-        <strong>{'Squat'}:</strong> {selectMaxWorkout(selectNameFilter(props.workouts, 'Squat'))}lbs<br />
-        <strong>{'Bench'}:</strong> {selectMaxWorkout(selectNameFilter(props.workouts, 'Bench'))}lbs<br />
-        <strong>{'Deadlift'}:</strong> {selectMaxWorkout(selectNameFilter(props.workouts, 'Deadlift'))}lbs
+        {/* Max Weight <br />  */}
+        <div>5-rep<br/><span> Max</span></div>
+        <div>{'Squat'}: <br /><span>{selectMaxWorkout(selectNameFilter(props.workouts, 'Squat'))}<span className="dashboard-header__label-subitem">lbs</span></span></div>
+        <div>{'Bench'}: <br /><span>{selectMaxWorkout(selectNameFilter(props.workouts, 'Bench'))}<span className="dashboard-header__label-subitem">lbs</span></span></div>
+        <div>{'Shoulder Press'}: <br /><span>{selectMaxWorkout(selectNameFilter(props.workouts, 'Shoulder Press'))}<span className="dashboard-header__label-subitem">lbs</span></span></div>
+        <div>{'Deadlift'}: <br /><span>{selectMaxWorkout(selectNameFilter(props.workouts, 'Deadlift'))}<span className="dashboard-header__label-subitem">lbs</span></span></div>
     </div>
 
-    {
+    {/* {
       !props.lastWorkout ? (
         <span><em>No recent workout activity</em></span>
       ) : (
@@ -45,7 +47,7 @@ export const WorkoutList = (props) => (
         {...props.lastWorkout}
       />
         )
-  }
+  } */}
   
   
   </div>
