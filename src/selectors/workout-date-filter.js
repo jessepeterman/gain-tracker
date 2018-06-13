@@ -1,13 +1,12 @@
 import React from 'react';
 import moment from 'moment';
 
-const now = moment().format('x');
+const now = moment();
 
-export default (workouts) => {
-  console.log(now);
-  let dateArray = workouts.map((workout) => {
-    console.log(workout.date);
-    return moment(workout.date) === now
+export default (workouts, day) => {
+  console.log(`date-filter: day: ${day}`)
+  let dateArray = workouts.filter((workout) => {
+    return moment(workout.date).isSame(day, 'day');
   });
 
   return dateArray;

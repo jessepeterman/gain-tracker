@@ -11,6 +11,10 @@ export const sortByDate = () => ({
 export const sortByName = () => ({
   type: 'SORT_BY_NAME'
 });
+export const setSingleDate = (singleDate) => ({
+  type: 'SET_SINGLE_DATE',
+  singleDate
+});
 
 export const setStartDate = (startDate) => ({
   type: 'SET_START_DATE',
