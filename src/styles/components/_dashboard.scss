@@ -1,14 +1,24 @@
 .dashboard-header {
-  justify-content: space-around;
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  @media (min-width: 600px){
   flex-direction: row;
+  justify-content: space-around;
+  }
 }
 
 .dashboard-header__labels{
 
 }
 
-
+.dashboard-header > div {
+  display: grid;
+  margin-bottom: 1rem;
+  @margin (min-width: 600px){
+    display: block !important;
+  }
+}
 .dashboard-header > div > span{
   font-size: 4rem;
   line-height: 1;

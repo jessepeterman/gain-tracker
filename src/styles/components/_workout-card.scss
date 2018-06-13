@@ -4,13 +4,19 @@
   background-color: rgb(221, 223, 223);
   margin-bottom: 1rem;
   padding: 5px;
-  width: 15rem;
+  width: 14rem;
 }
 
 .card-container{
   display: grid;
+  grid-template-columns: 1fr 1fr;
+
+ @media (min-width: 600px){
   grid-template-columns: 1fr 1fr 1fr 1fr;
+ }
+
 }
+
 
 .workout-card-recent div {
   margin: 0 auto;
