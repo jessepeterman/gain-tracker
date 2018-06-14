@@ -5,6 +5,10 @@ Gain tracker features
 - create graph/chart per workout/with all workouts on Summary page (or last 6 months, or yaer summarized)
 - 
 - Add chat/social media post/comment feature page. Q/A discussion
+  - create new question form
+  - create message list page
+  - create message style sheet
+  - 
 - share workout results email button?
 - convert to react native app and put on iOS?
 

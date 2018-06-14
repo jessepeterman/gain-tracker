@@ -7,6 +7,7 @@ import WorkoutFilter from '../components/WorkoutFilter';
 const DashboardPage = () => (
   <div className="content-container">
     <Link className="button" to="/create">New Workout</Link>
+    <Link className="button--green" to="/messageboard">Message Board</Link>
     <h1 className="content-title">Workout Summary</h1>
     {/* <WorkoutFilter /> */}
     <WorkoutSummary />
