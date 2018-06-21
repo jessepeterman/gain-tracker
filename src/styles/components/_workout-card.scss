@@ -6,11 +6,13 @@
   padding: 5px;
   width: 14rem;
 }
+.workout-card h2 {
+  margin: 0;
+}
 
 .card-container{
   display: grid;
   grid-template-columns: 1fr 1fr;
-
  @media (min-width: 600px){
   grid-template-columns: 1fr 1fr 1fr 1fr;
  }
@@ -23,3 +25,56 @@
   margin-bottom: 1rem;
 }
 
+// .card-container {
+//   border-radius: 2px;
+//   display: grid;
+//   grid-template-columns: 1fr;
+//   margin: 0 auto;
+//   @media (min-width: 600px){
+//     grid-template-columns: 1fr 1fr;
+//  }
+// }
+
+// .workout-card {
+//   background-color: rgb(221, 223, 223);
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   margin-bottom: 1rem;
+//   width: 22rem;
+// }
+
+
+
+//*** 
+// .workout-card h2 {
+//   margin: 0;
+// }
+
+// .workout-card {
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+
+//   @media (min-width: 600px){
+//     display: flex;
+//     justify-content: space-around;
+//   }
+// }
+// .workout-card > div {
+//   margin-right: 1rem;
+// }
+
+// .card-container {
+//   display: flex;
+//   flex-direction: column;
+//   margin: 0 auto;
+//   width: 100%;
+//   @media (min-width: 600px){
+//     // width: 40rem;
+//   }
+// }
+
+// .card-container > div:nth-child(even){
+//   background-color: rgb(221, 223, 223);
+// }

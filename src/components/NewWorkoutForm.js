@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import NumericInput from 'react-numeric-input';
-import {SingleDatePicker} from 'react-dates';
+import { SingleDatePicker } from 'react-dates';
 
 const now = moment();
 
@@ -19,14 +19,14 @@ export default class NewWorkoutForm extends React.Component {
       calendarFocused: false
     }
   }
-  
+
   onNameChange = (e) => {
     const name = e.target.value;
-    this.setState(() => ({name}));
+    this.setState(() => ({ name }));
   }
   onWeightChange = (e) => {
     const weight = Number(e.target.value);
-    this.setState(() => ({weight}));
+    this.setState(() => ({ weight }));
   }
   onSetsChange = (e) => {
     const sets = Number(e.target.value);
@@ -35,17 +35,17 @@ export default class NewWorkoutForm extends React.Component {
   }
   onRepsChange = (e) => {
     const reps = Number(e.target.value);
-    this.setState(() => ({reps }));
+    this.setState(() => ({ reps }));
   }
   onNoteChange = (e) => {
     const note = e.target.value;
-    this.setState(() => ({note}));
+    this.setState(() => ({ note }));
   }
   onDateChange = (date) => {
-    this.setState(() => ({date}));
+    this.setState(() => ({ date }));
   }
-  onFocusChange = ({focused}) => {
-    this.setState(() => ({ calendarFocused: focused}));
+  onFocusChange = ({ focused }) => {
+    this.setState(() => ({ calendarFocused: focused }));
   }
   onSubmit = (e) => {
     e.preventDefault();
@@ -59,38 +59,38 @@ export default class NewWorkoutForm extends React.Component {
     });
   };
 
-render() {
-  return (
- <div className="content-container">
-  <div className="content-title">
-    <h1 className="workout__title">Today's Workout</h1>
-    <SingleDatePicker 
-      date={this.state.date}
-      onDateChange={this.onDateChange}
-      focused={this.state.calendarFocused}
-      onFocusChange={this.onFocusChange}
-      numberOfMonths={1}
-      isOutsideRange={() => {false}}
-      />
-  </div>
-  <form className="entry" onSubmit={this.onSubmit}>
-        {/* <input className="entry-item" placeholder="Exercise name" onChange={this.onNameChange} /> */}
-        <select className="entry-item" placeholder="Exercise name" value={this.state.name} onChange={this.onNameChange}>
-          <option value="Squat">Squat</option>
-          <option value="Bench">Bench</option>
-          <option value="Shoulder Press">Shoulder Press</option>
-          <option value="Deadlift">Deadlift</option>
-          <option value="Chin-ups">Chin-ups</option>
+  render() {
+    return (
+      <div className="content-container">
+        <div className="content-title">
+          <h1 className="workout__title">Today's Workout</h1>
+          <SingleDatePicker
+            date={this.state.date}
+            onDateChange={this.onDateChange}
+            focused={this.state.calendarFocused}
+            onFocusChange={this.onFocusChange}
+            numberOfMonths={1}
+            isOutsideRange={() => { false }}
+          />
+        </div>
+        <form className="entry" onSubmit={this.onSubmit}>
+          {/* <input className="entry-item" placeholder="Exercise name" onChange={this.onNameChange} /> */}
+          <select className="entry-item" placeholder="Exercise name" value={this.state.name} onChange={this.onNameChange}>
+            <option value="Squat">Squat</option>
+            <option value="Bench">Bench</option>
+            <option value="Shoulder Press">Shoulder Press</option>
+            <option value="Deadlift">Deadlift</option>
+            <option value="Chin-ups">Chin-ups</option>
           </select>
-        <li>Weight: <input type="number" className="entry-input entry-item" value={this.state.weight} placeholder="135" onChange={this.onWeightChange} /></li>
-        <li>Sets: <input type="number" className="entry-input entry-item" placeholder="3" value={this.state.sets} onChange={this.onSetsChange}/></li>
-        <li>Reps: <input type="number" className="entry-input entry-item" placeholder="5" value={this.state.reps} onChange={this.onRepsChange}/></li>
-        <textarea className="text-area entry-item" placeholder="Notes" onChange={this.onNoteChange} />
-    <button className="button">Save Workout</button>
-  </form>
-</div>
+          <li>Weight: <input type="number" className="entry-input entry-item" value={this.state.weight} placeholder="135" onChange={this.onWeightChange} /></li>
+          <li>Sets: <input type="number" className="entry-input entry-item" placeholder="3" value={this.state.sets} onChange={this.onSetsChange} /></li>
+          <li>Reps: <input type="number" className="entry-input entry-item" placeholder="5" value={this.state.reps} onChange={this.onRepsChange} /></li>
+          <textarea className="text-area entry-item" placeholder="Notes" onChange={this.onNoteChange} />
+          <button className="button">Save Workout</button>
+        </form>
+      </div>
 
 
     )
-  } 
+  }
 };

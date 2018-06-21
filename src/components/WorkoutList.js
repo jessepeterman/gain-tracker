@@ -14,8 +14,8 @@ import Graph from './Graph';
 
 const now = moment();
 
-export class WorkoutList extends React.Component{ 
-  constructor(){
+export class WorkoutList extends React.Component {
+  constructor() {
     super();
     this.state = {
       date: moment(),
@@ -30,10 +30,10 @@ export class WorkoutList extends React.Component{
     this.setState(() => ({ calendarFocused: focused }));
   }
 
-render(){
-return (
-  <div>
-    {/* {
+  render() {
+    return (
+      <div>
+        {/* {
       selectNameFilter(props.workouts, props.text).map((workout) => (
         <WorkoutItem
           key={workout.id}
@@ -42,7 +42,7 @@ return (
       ))
     } */}
 
-    {/* {
+        {/* {
       selectDateFilter(this.props.workouts).map((workout) => (
         <WorkoutItem
           key={workout.id}
@@ -50,18 +50,18 @@ return (
         />
       ))
     } */}
-    <div className="content-container"> 
-      <div className="dashboard-header">
-        {/* Max Weight for {this.props.text}: {selectMaxWorkout(selectNameFilter(this.props.workouts, this.props.text))}lbs */}
-        {/* Max Weight <br />  */}
-        <div>5-rep<br/><span> Max</span></div>
-        <div>{'Squat'}: <br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Squat'))}<span className="dashboard-header__label-subitem">lbs</span></span></div>
-        <div>{'Bench'}: <br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Bench'))}<span className="dashboard-header__label-subitem">lbs</span></span></div>
-        <div>{'Shoulder Press'}: <br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Shoulder Press'))}<span className="dashboard-header__label-subitem">lbs</span></span></div>
-        <div>{'Deadlift'}: <br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Deadlift'))}<span className="dashboard-header__label-subitem">lbs</span></span></div>
-    </div>
+        <div className="content-container">
+          <div className="dashboard-header">
+            {/* Max Weight for {this.props.text}: {selectMaxWorkout(selectNameFilter(this.props.workouts, this.props.text))}lbs */}
+            {/* Max Weight <br />  */}
+            <div>5-rep<br /><span> Max</span></div>
+            <div>{'Squat'}: <br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Squat'))}<span className="dashboard-header__label-subitem">lbs</span></span></div>
+            <div>{'Bench'}: <br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Bench'))}<span className="dashboard-header__label-subitem">lbs</span></span></div>
+            <div>{'Shoulder Press'}: <br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Shoulder Press'))}<span className="dashboard-header__label-subitem">lbs</span></span></div>
+            <div>{'Deadlift'}: <br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Deadlift'))}<span className="dashboard-header__label-subitem">lbs</span></span></div>
+          </div>
 
-    {/* {
+          {/* {
       !props.lastWorkout ? (
         <span><em>No recent workout activity</em></span>
       ) : (
@@ -71,24 +71,32 @@ return (
       />
         )
   } */}
-  
-  
-  </div>
-    <hr />
 
-    
-    Recent activity:
-    <div className="card-container">
-      {
-      this.props.workouts.map((workout) => (
-        <WorkoutItem
-          key={workout.id}
-          {...workout}
-        />
-      ))
-    }
-    
-      {/* <SingleDatePicker
+
+        </div>
+        <hr />
+
+
+        Recent activity:
+    {
+          <WorkoutDayItem
+            key={this.props.workouts}
+            workouts={this.props.workoutsByDayArray}
+          />
+          // ))
+        }
+
+        {/* <div className="card-container">
+          {
+            this.props.workouts.map((workout) => (
+              <WorkoutItem
+                key={workout.id}
+                {...workout}
+              />
+            ))
+          } */}
+
+        {/* <SingleDatePicker
         date={this.state.date}
         onDateChange={this.onDateChange}
         focused={this.state.calendarFocused}
@@ -96,18 +104,12 @@ return (
         numberOfMonths={1}
         isOutsideRange={() => { false }}
       /> */}
-      {
-          // <WorkoutDayItem
-          //   key={this.props.workouts}
-          // workouts={this.props.workoutsByDayArray}
-          // />
-        // ))
-      }
-    </div>
+
+        {/* </div> */}
 
 
-  </div> 
-  );
+      </div >
+    );
   };
 };
 
@@ -115,7 +117,7 @@ const mapStateToProps = (state) => {
   return {
     workouts: state.workouts,
     // text: 'Squat',
-    lastWorkout: state.workouts[state.workouts.length-1],
+    lastWorkout: state.workouts[state.workouts.length - 1],
     workoutsByDayArray: selectDateFilter(state.workouts, state.filters.singleDate)
   };
 };
