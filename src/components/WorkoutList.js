@@ -77,24 +77,37 @@ export class WorkoutList extends React.Component {
         <hr />
 
 
-        Recent activity:
+        Last workout:
     {
-          <WorkoutDayItem
-            key={this.props.workouts}
-            workouts={this.props.workoutsByDayArray}
-          />
-          // ))
+          <div>
+            <WorkoutDayItem
+              key={this.props.workouts}
+              workouts={this.props.workoutsByDayArray}
+            />
+            <br /><br />
+            Workout history:
+            <div className="card-container">
+              {
+                this.props.workouts.map((workout) => (
+                  <WorkoutItem
+                    key={workout.id}
+                    {...workout}
+                  />
+                ))
+              }
+            </div>
+          </div>
         }
 
-        {/* <div className="card-container">
-          {
-            this.props.workouts.map((workout) => (
-              <WorkoutItem
-                key={workout.id}
-                {...workout}
-              />
-            ))
-          } */}
+        {/* <div className="card-container"> */}
+        {
+          // this.props.workouts.map((workout) => (
+          //   <WorkoutItem
+          //     key={workout.id}
+          //     {...workout}
+          //   />
+          // ))
+        }
 
         {/* <SingleDatePicker
         date={this.state.date}

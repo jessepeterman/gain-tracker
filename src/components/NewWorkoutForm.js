@@ -11,9 +11,9 @@ export default class NewWorkoutForm extends React.Component {
 
     this.state = {
       name: 'Squat',
-      weight: 135,
-      sets: 3,
-      reps: 5,
+      weight: '',
+      sets: '',
+      reps: '',
       note: '',
       date: moment(),
       calendarFocused: false
@@ -82,9 +82,9 @@ export default class NewWorkoutForm extends React.Component {
             <option value="Deadlift">Deadlift</option>
             <option value="Chin-ups">Chin-ups</option>
           </select>
-          <li>Weight: <input type="number" className="entry-input entry-item" value={this.state.weight} placeholder="135" onChange={this.onWeightChange} /></li>
-          <li>Sets: <input type="number" className="entry-input entry-item" placeholder="3" value={this.state.sets} onChange={this.onSetsChange} /></li>
-          <li>Reps: <input type="number" className="entry-input entry-item" placeholder="5" value={this.state.reps} onChange={this.onRepsChange} /></li>
+          <li>Weight: <input type="number" className="entry-input entry-item" placeholder="135" onChange={this.onWeightChange} /></li>
+          <li>Sets: <input type="number" className="entry-input entry-item" placeholder="3" onChange={this.onSetsChange} /></li>
+          <li>Reps: <input type="number" className="entry-input entry-item" placeholder="5" onChange={this.onRepsChange} /></li>
           <textarea className="text-area entry-item" placeholder="Notes" onChange={this.onNoteChange} />
           <button className="button">Save Workout</button>
         </form>
