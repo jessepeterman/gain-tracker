@@ -25,6 +25,7 @@ export class WorkoutList extends React.Component {
 
   onDateChange = (singleDate) => {
     this.props.setSingleDate(singleDate);
+    this.setState(() => ({ date: singleDate }));
   }
   onFocusChange = ({ focused }) => {
     this.setState(() => ({ calendarFocused: focused }));
@@ -84,6 +85,14 @@ export class WorkoutList extends React.Component {
               key={this.props.workouts}
               workouts={this.props.workoutsByDayArray}
             />
+            <SingleDatePicker
+              date={this.state.date}
+              onDateChange={this.onDateChange}
+              focused={this.state.calendarFocused}
+              onFocusChange={this.onFocusChange}
+              numberOfMonths={1}
+              isOutsideRange={() => { false }}
+            />
             <br /><br />
             Workout history:
             <div className="card-container">
@@ -108,15 +117,6 @@ export class WorkoutList extends React.Component {
           //   />
           // ))
         }
-
-        {/* <SingleDatePicker
-        date={this.state.date}
-        onDateChange={this.onDateChange}
-        focused={this.state.calendarFocused}
-        onFocusChange={this.onFocusChange}
-        numberOfMonths={1}
-        isOutsideRange={() => { false }}
-      /> */}
 
         {/* </div> */}
 

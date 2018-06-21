@@ -27,3 +27,12 @@
 .workout-day-view ul:last-child {
   padding-right: 2rem;
 }
+
+.no-data-message {
+  margin: 0 auto;
+    @media (min-width: 600px){
+    align-self: center;
+    text-align: center;
+    margin: 0 auto;
+  }
+}

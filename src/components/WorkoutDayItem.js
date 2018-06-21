@@ -14,6 +14,10 @@ const WorkoutItem = (props) => {
   //       </div>
   // );
   let date;
+  let isWorkout = true;
+  if (workouts.length === 0) {
+    isWorkout = false;
+  }
   workouts.map((workout) => {
     date = workout.date;
   })
@@ -26,7 +30,10 @@ const WorkoutItem = (props) => {
     // </div>
     <div className="workout-day-container">
       <div className="workout-day-view">
-        <h2 className="workout-day-view-date">Workout Date: {moment(date).format('M/D')}</h2>
+        {!isWorkout ?
+          <h3 className="no-data-message"> <em>No workout data for this day</em></h3> :
+          <h2 className="workout-day-view-date">Workout Date: {moment(date).format('M/D')}</h2>
+        }
         {
           workouts.map((workout) => (
             < ul >
@@ -37,9 +44,9 @@ const WorkoutItem = (props) => {
             </ul>
           ))
         }
+
       </div>
     </div >
-
 
     // <div className="workout-card">
     //   <li><strong>{name}</strong></li>
