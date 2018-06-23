@@ -11,9 +11,9 @@ export default class NewWorkoutForm extends React.Component {
 
     this.state = {
       name: 'Squat',
-      weight: '',
-      sets: '',
-      reps: '',
+      weight: 135,
+      sets: 3,
+      reps: 5,
       note: '',
       date: moment(),
       calendarFocused: false
@@ -25,6 +25,9 @@ export default class NewWorkoutForm extends React.Component {
     this.setState(() => ({ name }));
   }
   onWeightChange = (e) => {
+    if (e.target.value === 0) {
+      this.setState(() => ({ weight: null }))
+    }
     const weight = Number(e.target.value);
     this.setState(() => ({ weight }));
   }
@@ -46,6 +49,24 @@ export default class NewWorkoutForm extends React.Component {
   }
   onFocusChange = ({ focused }) => {
     this.setState(() => ({ calendarFocused: focused }));
+  }
+  onIncrement = (e) => {
+    e.preventDefault();
+    if (this.state.weight === '') {
+      this.setState(() => ({ weight: 0 + 5 }))
+    } else {
+      this.setState(() => ({ weight: this.state.weight + 5 }))
+    }
+
+  }
+  onDecrement = (e) => {
+    e.preventDefault();
+    if (this.state.weight >= 5) {
+      this.setState(() => ({ weight: this.state.weight - 5 }))
+    }
+  }
+  handleFocus = (event) => {
+    event.target.select();
   }
   onSubmit = (e) => {
     e.preventDefault();
@@ -82,9 +103,11 @@ export default class NewWorkoutForm extends React.Component {
             <option value="Deadlift">Deadlift</option>
             <option value="Chin-ups">Chin-ups</option>
           </select>
-          <li>Weight: <input type="number" className="entry-input entry-item" placeholder="135" onChange={this.onWeightChange} /></li>
-          <li>Sets: <input type="number" className="entry-input entry-item" placeholder="3" onChange={this.onSetsChange} /></li>
-          <li>Reps: <input type="number" className="entry-input entry-item" placeholder="5" onChange={this.onRepsChange} /></li>
+          <li><button onClick={this.onDecrement}>-</button>
+            <input onFocus={this.handleFocus} style={{ textAlign: 'center' }} type="number" className="entry-input entry-item" value={this.state.weight} placeholder="135" onChange={this.onWeightChange} />
+            <button onClick={this.onIncrement}>+</button></li>
+          <li>Sets: <input onFocus={this.handleFocus} type="number" className="entry-input entry-item" value={this.state.sets} placeholder="3" onChange={this.onSetsChange} /></li>
+          <li>Reps: <input onFocus={this.handleFocus} type="number" className="entry-input entry-item" value={this.state.reps} placeholder="5" onChange={this.onRepsChange} /></li>
           <textarea className="text-area entry-item" placeholder="Notes" onChange={this.onNoteChange} />
           <button className="button">Save Workout</button>
         </form>
