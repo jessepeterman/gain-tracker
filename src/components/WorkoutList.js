@@ -9,6 +9,8 @@ import { setSingleDate } from '../actions/filters';
 import selectMaxWorkout from '../selectors/workout-max-weight';
 import selectNameFilter from '../selectors/workout-name-filter';
 import selectDateFilter from '../selectors/workout-date-filter';
+import selectLastDateFilter from '../selectors/workout-last-date-filter';
+import sortDateMostRecentFilter from '../selectors/sort-date-most-recent-filter';
 import Graph from './Graph';
 // import selectWorkouts from "../selectors/Workouts";
 
@@ -30,8 +32,13 @@ export class WorkoutList extends React.Component {
   onFocusChange = ({ focused }) => {
     this.setState(() => ({ calendarFocused: focused }));
   }
+  componentDidMount() {
+    this.props.setSingleDate(this.props.workoutLastDate);
+    this.setState(() => ({ date: this.props.workoutLastDate }));
+  }
 
   render() {
+    // console.log(this.props.lastWorkout); // assign this date to workoutsbydayarray for auto fill
     return (
       <div>
         {/* {
@@ -82,22 +89,22 @@ export class WorkoutList extends React.Component {
     {
           <div>
             <WorkoutDayItem
-              key={this.props.workouts}
-              workouts={this.props.workoutsByDayArray}
+              key={this.props.workouts.toString()}
+              workouts={this.props.workoutsLastDate}
             />
-            <SingleDatePicker
+            {/* <SingleDatePicker
               date={this.state.date}
               onDateChange={this.onDateChange}
               focused={this.state.calendarFocused}
               onFocusChange={this.onFocusChange}
               numberOfMonths={1}
               isOutsideRange={() => { false }}
-            />
+            /> */}
             <br /><br />
             Workout history:
             <div className="card-container">
               {
-                this.props.workouts.map((workout) => (
+                this.props.sortedWorkouts.map((workout) => (
                   <WorkoutItem
                     key={workout.id}
                     {...workout}
@@ -131,7 +138,10 @@ const mapStateToProps = (state) => {
     workouts: state.workouts,
     // text: 'Squat',
     lastWorkout: state.workouts[state.workouts.length - 1],
-    workoutsByDayArray: selectDateFilter(state.workouts, state.filters.singleDate)
+    lastDate: selectLastDateFilter(state.workouts),
+    sortedWorkouts: sortDateMostRecentFilter(state.workouts),
+    workoutsLastDate: selectDateFilter(state.workouts, selectLastDateFilter(state.workouts))
+    // workoutsSorted: sortDateMostRecentFilter()
   };
 };
 

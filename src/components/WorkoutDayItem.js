@@ -36,7 +36,7 @@ const WorkoutItem = (props) => {
         }
         {
           workouts.map((workout) => (
-            < ul >
+            < ul key={workout.id}>
               <li><strong>{workout.name}</strong></li>
               <li>Weight: {workout.weight}lbs</li>
               <li>Sets: {workout.sets}</li>
