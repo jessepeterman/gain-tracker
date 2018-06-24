@@ -17,3 +17,15 @@
 .button--secondary {
   background: #888;
 }
+
+.increment-button {
+  background: rgb(229, 229, 231);
+  width: 3rem;
+  border-radius: 2px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}

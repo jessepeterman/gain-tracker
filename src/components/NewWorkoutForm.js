@@ -25,8 +25,9 @@ export default class NewWorkoutForm extends React.Component {
     this.setState(() => ({ name }));
   }
   onWeightChange = (e) => {
-    if (e.target.value === 0) {
-      this.setState(() => ({ weight: null }))
+    if (this.state.weight === 0) {
+      this.setState(() => ({ weight: '' }));
+      this.setState(this.state);
     }
     const weight = Number(e.target.value);
     this.setState(() => ({ weight }));
@@ -50,7 +51,7 @@ export default class NewWorkoutForm extends React.Component {
   onFocusChange = ({ focused }) => {
     this.setState(() => ({ calendarFocused: focused }));
   }
-  onIncrement = (e) => {
+  onIncrementWeight = (e) => {
     e.preventDefault();
     if (this.state.weight === '') {
       this.setState(() => ({ weight: 0 + 5 }))
@@ -59,14 +60,44 @@ export default class NewWorkoutForm extends React.Component {
     }
 
   }
-  onDecrement = (e) => {
+  onDecrementWeight = (e) => {
     e.preventDefault();
     if (this.state.weight >= 5) {
       this.setState(() => ({ weight: this.state.weight - 5 }))
     }
   }
-  handleFocus = (event) => {
-    event.target.select();
+  onIncrementSets = (e) => {
+    e.preventDefault();
+    if (this.state.sets === '') {
+      this.setState(() => ({ sets: 0 + 1 }))
+    } else {
+      this.setState(() => ({ sets: this.state.sets + 1 }))
+    }
+
+  }
+  onDecrementSets = (e) => {
+    e.preventDefault();
+    if (this.state.sets >= 2) {
+      this.setState(() => ({ sets: this.state.sets - 1 }))
+    }
+  }
+  onIncrementReps = (e) => {
+    e.preventDefault();
+    if (this.state.reps === '') {
+      this.setState(() => ({ reps: 0 + 1 }))
+    } else {
+      this.setState(() => ({ reps: this.state.reps + 1 }))
+    }
+
+  }
+  onDecrementReps = (e) => {
+    e.preventDefault();
+    if (this.state.reps >= 2) {
+      this.setState(() => ({ reps: this.state.reps - 1 }))
+    }
+  }
+  handleFocus = (e) => {
+    e.target.select();
   }
   onSubmit = (e) => {
     e.preventDefault();
@@ -81,8 +112,9 @@ export default class NewWorkoutForm extends React.Component {
   };
 
   render() {
+    const center = { textAlign: 'center' };
     return (
-      <div className="content-container">
+      <div className="content-container" >
         <div className="content-title">
           <h1 className="workout__title">Today's Workout</h1>
           <SingleDatePicker
@@ -103,11 +135,17 @@ export default class NewWorkoutForm extends React.Component {
             <option value="Deadlift">Deadlift</option>
             <option value="Chin-ups">Chin-ups</option>
           </select>
-          <li><button onClick={this.onDecrement}>-</button>
-            <input onFocus={this.handleFocus} style={{ textAlign: 'center' }} type="number" className="entry-input entry-item" value={this.state.weight} placeholder="135" onChange={this.onWeightChange} />
-            <button onClick={this.onIncrement}>+</button></li>
-          <li>Sets: <input onFocus={this.handleFocus} type="number" className="entry-input entry-item" value={this.state.sets} placeholder="3" onChange={this.onSetsChange} /></li>
-          <li>Reps: <input onFocus={this.handleFocus} type="number" className="entry-input entry-item" value={this.state.reps} placeholder="5" onChange={this.onRepsChange} /></li>
+          <li>Weight: <button className="increment-button" onClick={this.onDecrementWeight}>-</button>
+            <input onFocus={this.handleFocus} style={center} type="number" className="entry-input entry-item" value={this.state.weight} placeholder="" onChange={this.onWeightChange} />
+            <button className="increment-button" onClick={this.onIncrementWeight}>+</button></li>
+
+          <li>Sets: <button className="increment-button" onClick={this.onDecrementSets}>-</button>
+            <input onFocus={this.handleFocus} style={center} type="number" className="entry-input entry-item" value={this.state.sets} placeholder="" onChange={this.onSetsChange} />
+            <button className="increment-button" onClick={this.onIncrementSets}>+</button></li>
+          <li>Reps: <button className="increment-button" onClick={this.onDecrementReps}>-</button>
+            <input onFocus={this.handleFocus} style={center} type="number" className="entry-input entry-item" value={this.state.reps} placeholder="" onChange={this.onRepsChange} />
+            <button className="increment-button" onClick={this.onIncrementReps}>+</button></li>
+
           <textarea className="text-area entry-item" placeholder="Notes" onChange={this.onNoteChange} />
           <button className="button">Save Workout</button>
         </form>
