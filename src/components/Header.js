@@ -1,17 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import { startLogout } from '../actions/auth';
+import { Button, Container, Menu, Segment } from 'semantic-ui-react';
 
-export const Header = ( { startLogout }) => (
-  <header className="header">
-  <div className="content-container">
-    <div className="header__content">
-      <Link className="header__title" to="/dashboard"><h1>Gain Tracker</h1></Link>
-      <button className="button button--link" onClick={startLogout}>Logout</button>
+export const Header = ({ startLogout }) => (
+  <Container>
+    <div className="header">
+      <Link to="/dashboard"><h1>Gain Tracker</h1></Link>
+      <Button secondary onClick={startLogout}>Logout</Button>
     </div>
-  </div>
-  </header>
+  </Container >
 );
 
 const mapDispatchToProps = (dispatch) => ({

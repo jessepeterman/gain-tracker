@@ -3,6 +3,7 @@
   flex-direction: column;
   background: rgb(122, 158, 179);
   align-items: left;
+  text-align: center;
 
   @media (min-width: 600px){
     flex-direction: row;
@@ -11,10 +12,12 @@
 
 
 .workout-day-container {
+  // max-width: 600px;
+  text-align: center;
 
 }
 .workout-day-view-date {
-
+  font-size: 5rem;
   margin: 0 auto;
   padding: 2rem;
   @media (min-width: 600px){
@@ -23,6 +26,11 @@
     margin: 0 auto;
   }
 }
+
+.workout-day-view-weight {
+  font-size: 3rem;
+}
+
 
 .workout-day-view ul:last-child {
   padding-right: 2rem;

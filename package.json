@@ -33,7 +33,7 @@
     "normalize.css": "7.0.0",
     "numeral": "2.0.6",
     "raf": "3.3.2",
-    "react": "16.0.0",
+    "react": "^16.3.2",
     "react-addons-shallow-compare": "15.6.0",
     "react-dates": "12.7.0",
     "react-dom": "16.0.0",
@@ -46,6 +46,7 @@
     "redux-mock-store": "1.2.3",
     "redux-thunk": "2.2.0",
     "sass-loader": "6.0.6",
+    "semantic-ui-react": "^0.82.0",
     "style-loader": "0.18.2",
     "uuid": "3.1.0",
     "validator": "8.0.0",
@@ -60,6 +61,7 @@
     "jest": "^20.0.4",
     "jest-cli": "^23.1.0",
     "react-test-renderer": "16.0.0",
+    "url-loader": "^1.0.1",
     "webpack-dev-server": "2.5.1"
   },
   "description": ""

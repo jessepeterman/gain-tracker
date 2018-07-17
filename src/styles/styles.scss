@@ -1,17 +1,48 @@
-@import './base/settings';
-@import './base/base';
-@import './components/box-layout';
-@import './components/button';
-@import './components/header';
-@import './components/content-container';
-@import './components/page-header';
-@import './components/input-group';
-@import './components/inputs';
-@import './components/form';
-@import './components/visibility';
-@import './components/list';
+// @import './base/settings';
+// @import './base/base';
+// @import './components/box-layout';
+// @import './components/button';
+// @import './components/header';
+// @import './components/content-container';
+// @import './components/page-header';
+// @import './components/input-group';
+// @import './components/inputs';
+// @import './components/form';
+// @import './components/visibility';
+// @import './components/list';
 @import './components/loader';
-@import './components/new-workout-form';
-@import './components/workout-card';
-@import './components/dashboard';
-@import './components/workout-day';
+// @import './components/new-workout-form';
+// @import './components/workout-card';
+// @import './components/dashboard';
+// @import './components/workout-day';
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0 1rem 0;
+}
+
+.zero-margin {
+  margin: 0;
+}
+
+.centered {
+  text-align: center;
+  // display: flex;
+  // display: row;
+  // justify-content: center;
+  // align-items: center;
+}
+.center-items {
+  align-items: center;
+
+}
+
+// .chinups {
+//   background: url('../../public/images/chin-ups.png');
+//   height: 50px;
+//   width: auto;
+//   background-size: cover;
+// }

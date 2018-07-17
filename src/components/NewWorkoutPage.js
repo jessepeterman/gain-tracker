@@ -1,18 +1,19 @@
 import React from 'react';
 import NewWorkoutForm from './NewWorkoutForm';
 import { connect } from 'react-redux';
-import {startAddWorkout} from '../actions/workouts';
+import { startAddWorkout } from '../actions/workouts';
+import { Container, Message } from 'semantic-ui-react';
 
 export class NewWorkoutPage extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
 
     this.state = {
       message: false
     };
   }
-  
-  
+
+
   onSubmit = (newWorkout) => {
     this.props.startAddWorkout(newWorkout);
     this.setState((prevState) => {
@@ -27,13 +28,13 @@ export class NewWorkoutPage extends React.Component {
   };
 
   render() {
-    return ( 
-      <div>
+    return (
+      <Container>
         {
-          this.state.message &&  <p className="message">Workout saved</p>
+          this.state.message && <Message positive><Message.Header>Workout saved</Message.Header></Message>
         }
-        <NewWorkoutForm onSubmit = { this.onSubmit } />
-        </div>
+        <NewWorkoutForm onSubmit={this.onSubmit} />
+      </Container>
     )
   }
 }

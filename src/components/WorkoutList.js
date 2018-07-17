@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Segment } from 'semantic-ui-react';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import WorkoutItem from './WorkoutItem';
@@ -58,7 +59,7 @@ export class WorkoutList extends React.Component {
         />
       ))
     } */}
-        <div className="content-container">
+        <Segment raised>
           <div className="dashboard-header">
             {/* Max Weight for {this.props.text}: {selectMaxWorkout(selectNameFilter(this.props.workouts, this.props.text))}lbs */}
             {/* Max Weight <br />  */}
@@ -80,13 +81,8 @@ export class WorkoutList extends React.Component {
         )
   } */}
 
-
-        </div>
-        <hr />
-
-
-        Last workout:
-    {
+        </Segment>
+        {
           <div>
             <WorkoutDayItem
               key={this.props.workouts.toString()}
@@ -100,7 +96,6 @@ export class WorkoutList extends React.Component {
               numberOfMonths={1}
               isOutsideRange={() => { false }}
             /> */}
-            <br /><br />
             Workout history:
             <div className="card-container">
               {
