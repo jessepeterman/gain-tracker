@@ -109,10 +109,10 @@ export class WorkoutList extends React.Component {
               numberOfMonths={1}
               isOutsideRange={() => { false }}
             /> */}
-            <Segment raised>
+            <Segment raised style={{ textAlign: 'center' }}>
               <h3>Workout history</h3>
               <div className="card-container">
-                <Table celled>
+                <Table striped textAlign='center'>
                   <Table.Header>
                     <Table.Row>
                       <Table.HeaderCell>Date</Table.HeaderCell>
