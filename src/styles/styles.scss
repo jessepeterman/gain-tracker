@@ -25,7 +25,10 @@
 }
 
 .zero-margin {
-  margin: 0;
+  // margin: 0 auto 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .centered {
@@ -38,6 +41,28 @@
 .center-items {
   align-items: center;
 
+}
+
+.noBottomMargin {
+  margin-bottom: 0;
+}
+
+.max-summary {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 2rem 0 2rem 0;
+}
+
+@media (min-width: 900px){
+  .max-summary {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.workout-day-container {
+  margin: 0 auto 0 auto;
 }
 
 // .chinups {

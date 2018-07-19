@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import NumericInput from 'react-numeric-input';
 import { SingleDatePicker } from 'react-dates';
-import { Button, Card, Icon, Image } from 'semantic-ui-react'
+import { Button, Card, Dropdown, Icon, Image } from 'semantic-ui-react'
 import chinUpIcon from '../../public/images/chin-ups.png';
 import squatIcon from '../../public/images/squats.png';
 import shoulderPressIcon from '../../public/images/shoulder-press-icon.png';
@@ -25,8 +25,8 @@ export default class NewWorkoutForm extends React.Component {
     }
   }
 
-  onNameChange = (e) => {
-    const name = e.target.value;
+  onNameChange = (e, { value }) => {
+    const name = value;
     this.setState(() => ({ name }));
   }
   onWeightChange = (e) => {
@@ -118,6 +118,33 @@ export default class NewWorkoutForm extends React.Component {
 
   render() {
     const center = { textAlign: 'center' };
+    const workoutOptions = [
+      {
+        text: 'Squat',
+        value: 'Squat',
+        image: { avatar: true, src: squatIcon }
+      },
+      {
+        text: 'Bench',
+        value: 'Bench',
+        image: { avatar: true, src: benchPressIcon }
+      },
+      {
+        text: 'Shoulder Press',
+        value: 'Shoulder Press',
+        image: { avatar: true, src: shoulderPressIcon }
+      },
+      {
+        text: 'Deadlift',
+        value: 'Deadlift',
+        image: { avatar: true, src: deadLiftIcon }
+      },
+      {
+        text: 'Chin-ups',
+        value: 'Chin-ups',
+        image: { avatar: true, src: chinUpIcon }
+      },
+    ];
     return (
       <div className="centered" >
         <Card>
@@ -138,13 +165,15 @@ export default class NewWorkoutForm extends React.Component {
               {this.state.name === "Shoulder Press" && (<img src={shoulderPressIcon} style={{ height: "50px", width: "auto", paddingRight: "1rem" }} />)}
               {this.state.name === "Deadlift" && (<img src={deadLiftIcon} style={{ height: "50px", width: "auto", paddingRight: "1rem" }} />)}
               {this.state.name === "Bench" && (<img src={benchPressIcon} style={{ height: "50px", width: "auto", paddingRight: "1rem" }} />)}
-              <select className="entry-item" placeholder="Exercise name" value={this.state.name} onChange={this.onNameChange}>
+              {/* <select className="entry-item" placeholder="Exercise name" value={this.state.name} onChange={this.onNameChange}>
                 <option value="Squat">Squat</option>
                 <option value="Bench">Bench</option>
                 <option value="Shoulder Press">Shoulder Press</option>
                 <option value="Deadlift">Deadlift</option>
                 <option value="Chin-ups">Chin-ups</option>
-              </select>
+              </select> */}
+
+              <Dropdown placeholder='Select Workout' options={workoutOptions} selection value={this.state.name} onChange={this.onNameChange} />
               <Card.Description>Weight: <button className="increment-button" onClick={this.onDecrementWeight}>-</button>
                 <input onFocus={this.handleFocus} style={center} type="number" className="entry-input entry-item" value={this.state.weight} placeholder="" onChange={this.onWeightChange} />
                 <button className="increment-button" onClick={this.onIncrementWeight}>+</button>
@@ -155,15 +184,10 @@ export default class NewWorkoutForm extends React.Component {
                 Reps: <button className="increment-button" onClick={this.onDecrementReps}>-</button>
                 <input onFocus={this.handleFocus} style={center} type="number" className="entry-input entry-item" value={this.state.reps} placeholder="" onChange={this.onRepsChange} />
                 <button className="increment-button" onClick={this.onIncrementReps}>+</button>
-
+                <textarea className="text-area entry-item" placeholder="Notes" onChange={this.onNoteChange} />
+                <Button primary className="button">Save Workout</Button>
               </Card.Description></form>
           </Card.Content>
-          <Card.Content extra>
-            <textarea className="text-area entry-item" placeholder="Notes" onChange={this.onNoteChange} />
-            <Button primary className="button">Save Workout</Button>
-          </Card.Content>
-
-
         </Card>
       </div >
 

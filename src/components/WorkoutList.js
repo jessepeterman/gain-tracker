@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Segment } from 'semantic-ui-react';
+import { Image, Header, Table, Segment } from 'semantic-ui-react';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import WorkoutItem from './WorkoutItem';
@@ -13,6 +13,11 @@ import selectDateFilter from '../selectors/workout-date-filter';
 import selectLastDateFilter from '../selectors/workout-last-date-filter';
 import sortDateMostRecentFilter from '../selectors/sort-date-most-recent-filter';
 import Graph from './Graph';
+import chinUpIcon from '../../public/images/chin-ups.png';
+import squatIcon from '../../public/images/squats.png';
+import shoulderPressIcon from '../../public/images/shoulder-press-icon.png';
+import deadLiftIcon from '../../public/images/deadlift-icon.png';
+import benchPressIcon from '../../public/images/bench-press-icon.png';
 // import selectWorkouts from "../selectors/Workouts";
 
 const now = moment();
@@ -59,15 +64,23 @@ export class WorkoutList extends React.Component {
         />
       ))
     } */}
+        <div className="zero-margin">
+        </div>
         <Segment raised>
-          <div className="dashboard-header">
+          <div className="max-summary centered zero-margin noBottomMargin">
             {/* Max Weight for {this.props.text}: {selectMaxWorkout(selectNameFilter(this.props.workouts, this.props.text))}lbs */}
             {/* Max Weight <br />  */}
-            <div>5-rep<br /><span> Max</span></div>
-            <div>{'Squat'}: <br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Squat'))}<span className="dashboard-header__label-subitem">lbs</span></span></div>
-            <div>{'Bench'}: <br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Bench'))}<span className="dashboard-header__label-subitem">lbs</span></span></div>
-            <div>{'Shoulder Press'}: <br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Shoulder Press'))}<span className="dashboard-header__label-subitem">lbs</span></span></div>
-            <div>{'Deadlift'}: <br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Deadlift'))}<span className="dashboard-header__label-subitem">lbs</span></span></div>
+            <Header as="h2" style={{ paddingRight: "2rem" }}>Current 5-Rep Max</Header>
+            {/* <h2>Current 5-Rep Max</h2> */}
+            {/* <hr /> */}
+            <Graph />
+            <Segment.Group horizontal>
+              {/* <div>5-rep<br /><span> Max</span></div> */}
+              <Segment><div><Image src={squatIcon} avatar /><br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Squat'))}<span className="dashboard-header__label-subitem">lbs</span></span></div></Segment>
+              <Segment><div><Image src={benchPressIcon} avatar /><br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Bench'))}<span className="dashboard-header__label-subitem">lbs</span></span></div></Segment>
+              <Segment><div><Image src={shoulderPressIcon} avatar /><br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Shoulder Press'))}<span className="dashboard-header__label-subitem">lbs</span></span></div></Segment>
+              <Segment><div><Image src={deadLiftIcon} avatar /><br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Deadlift'))}<span className="dashboard-header__label-subitem">lbs</span></span></div></Segment>
+            </Segment.Group>
           </div>
 
           {/* {
@@ -96,17 +109,33 @@ export class WorkoutList extends React.Component {
               numberOfMonths={1}
               isOutsideRange={() => { false }}
             /> */}
-            Workout history:
-            <div className="card-container">
-              {
-                this.props.sortedWorkouts.map((workout) => (
-                  <WorkoutItem
-                    key={workout.id}
-                    {...workout}
-                  />
-                ))
-              }
-            </div>
+            <Segment raised>
+              <h3>Workout history</h3>
+              <div className="card-container">
+                <Table celled>
+                  <Table.Header>
+                    <Table.Row>
+                      <Table.HeaderCell>Date</Table.HeaderCell>
+                      <Table.HeaderCell>Workout</Table.HeaderCell>
+                      <Table.HeaderCell>Weight</Table.HeaderCell>
+                      <Table.HeaderCell>Reps/Sets</Table.HeaderCell>
+                    </Table.Row>
+                  </Table.Header>
+                  <Table.Body>
+
+
+                    {
+                      this.props.sortedWorkouts.map((workout) => (
+                        <WorkoutItem
+                          key={workout.id}
+                          {...workout}
+                        />
+                      ))
+                    }
+                  </Table.Body>
+                </Table>
+              </div>
+            </Segment>
           </div>
         }
 

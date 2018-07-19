@@ -6,10 +6,9 @@ import Graph from './Graph';
 // import selectWorkouts from "../selectors/workouts";
 
 const WorkoutSummary = () => (
-  <div>
-    {/* <WorkoutItemLast /> */}
+  <div className="centered">
     <WorkoutList />
-    </div>
+  </div>
 );
 
 export default WorkoutSummary;

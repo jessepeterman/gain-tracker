@@ -33,7 +33,9 @@ export class NewWorkoutPage extends React.Component {
         {
           this.state.message && <Message positive><Message.Header>Workout saved</Message.Header></Message>
         }
-        <NewWorkoutForm onSubmit={this.onSubmit} />
+        <div className="zero-margin">
+          <NewWorkoutForm onSubmit={this.onSubmit} />
+        </div>
       </Container>
     )
   }

@@ -8,17 +8,11 @@ import WorkoutFilter from '../components/WorkoutFilter';
 const DashboardPage = (props) => {
   const { classes } = props;
   return (
-    // <div className="content-container">
     <Container>
       <Link className="button" to="/create"><Button primary>New Workout</Button></Link>
-      {/* <Button>
-        New Workout
-      </Button> */}
       <Header as='h1'>Workout Summary</Header>
-      {/* <WorkoutFilter /> */}
       <WorkoutSummary />
     </Container>
-    // </div >
   )
 };
 

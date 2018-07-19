@@ -46,28 +46,30 @@ export default class Example extends React.Component {
           buttonContent={content} /> */}
         <XYPlot
           xType="ordinal"
-          width={250}
-          height={250}
-          // yDistance={25}
+          width={280}
+          height={150}
+        // yDistance={25}
         >
           <VerticalGridLines />
           <HorizontalGridLines />
           <XAxis />
           <YAxis />
           <BarSeries
-            className="vertical-bar-series-example"
+            className="vertical-bar-series"
             data={[
-              { x: 'Squat', y: 190 },
+              { x: 'Squat', y: 205 },
               { x: 'Bench', y: 135 },
-              { x: 'Deadlift', y: 165 }
+              { x: 'S Press', y: 80 },
+              { x: 'DL', y: 225 },
+              { x: 'C-Ups', y: 10 }
             ]} />
-          <BarSeries
+          {/* <BarSeries
             data={[
               { x: 'Squat', y: 205 },
               { x: 'Bench', y: 145 },
               { x: 'Deadlift', y: 175 }
 
-            ]} />
+            ]} /> */}
         </XYPlot>
       </div>
     );
