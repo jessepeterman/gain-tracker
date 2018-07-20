@@ -196,15 +196,17 @@ export default class NewWorkoutForm extends React.Component {
               {this.state.name === "Bench" && (<img src={benchPressIcon} style={{ height: "50px", width: "auto", paddingRight: "1rem" }} />)}
               <Dropdown placeholder='Select Workout' options={workoutOptions} selection value={this.state.name} onChange={this.onNameChange} />
               <Form.Group>
-                <Form.Field>
-                  <input placeholder='Lbs' onFocus={this.handleFocus} style={center} type="number" className="entry-input entry-item" value={this.state.weight} onChange={this.onWeightChange} />
-                </Form.Field>
-                <Form.Field>
-                  <input placeholder='Sets' onFocus={this.handleFocus} style={center} type="number" className="entry-input entry-item" value={this.state.sets} onChange={this.onSetsChange} />
-                </Form.Field>
-                <Form.Field>
-                  <input placeholder='Reps' onFocus={this.handleFocus} style={center} type="number" className="entry-input entry-item" value={this.state.reps} onChange={this.onRepsChange} />
-                </Form.Field>
+                <div className="form-group">
+                  <Form.Field>
+                    <input placeholder='Lbs' onFocus={this.handleFocus} style={center} type="number" className="entry-input entry-item" value={this.state.weight} onChange={this.onWeightChange} />
+                  </Form.Field>
+                  <Form.Field>
+                    <input placeholder='Sets' onFocus={this.handleFocus} style={center} type="number" className="entry-input entry-item" value={this.state.sets} onChange={this.onSetsChange} />
+                  </Form.Field>
+                  <Form.Field>
+                    <input placeholder='Reps' onFocus={this.handleFocus} style={center} type="number" className="entry-input entry-item" value={this.state.reps} onChange={this.onRepsChange} />
+                  </Form.Field>
+                </div>
               </Form.Group>
               <Form.TextArea />
               <Button type='submit'>Save Workout</Button>

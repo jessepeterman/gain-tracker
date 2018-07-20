@@ -76,3 +76,22 @@
   display: none;
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.form-group {
+  display: flex;
+  flex-direction: row;
+}
+.form-group > div {
+  padding: .5rem .5rem 1rem .5rem;
+}
+
+@media (min-width: 768px){
+  .form-group > div {
+    padding: .5rem .5rem 0 .5rem;
+  }
+}
