@@ -2,7 +2,7 @@ import React from 'react';
 import moment from 'moment';
 import NumericInput from 'react-numeric-input';
 import { SingleDatePicker } from 'react-dates';
-import { Button, Card, Dropdown, Icon, Image } from 'semantic-ui-react'
+import { Button, Card, Dropdown, Form, Icon, Image } from 'semantic-ui-react'
 import chinUpIcon from '../../public/images/chin-ups.png';
 import squatIcon from '../../public/images/squats.png';
 import shoulderPressIcon from '../../public/images/shoulder-press-icon.png';
@@ -16,9 +16,9 @@ export default class NewWorkoutForm extends React.Component {
 
     this.state = {
       name: 'Squat',
-      weight: 135,
-      sets: 3,
-      reps: 5,
+      weight: '',
+      sets: '',
+      reps: '',
       note: '',
       date: moment(),
       calendarFocused: false
@@ -158,14 +158,14 @@ export default class NewWorkoutForm extends React.Component {
               numberOfMonths={1}
               isOutsideRange={() => { false }}
             />
-            <form className="entry" onSubmit={this.onSubmit}>
-              {/* <input className="entry-item" placeholder="Exercise name" onChange={this.onNameChange} /> */}
-              {this.state.name === "Chin-ups" && (<img src={chinUpIcon} style={{ height: "50px", width: "auto", paddingRight: "1rem" }} />)}
+            {/* <form className="entry" onSubmit={this.onSubmit}> */}
+            {/* <input className="entry-item" placeholder="Exercise name" onChange={this.onNameChange} /> */}
+            {/* {this.state.name === "Chin-ups" && (<img src={chinUpIcon} style={{ height: "50px", width: "auto", paddingRight: "1rem" }} />)}
               {this.state.name === "Squat" && (<img src={squatIcon} style={{ height: "50px", width: "auto", paddingRight: "1rem" }} />)}
               {this.state.name === "Shoulder Press" && (<img src={shoulderPressIcon} style={{ height: "50px", width: "auto", paddingRight: "1rem" }} />)}
               {this.state.name === "Deadlift" && (<img src={deadLiftIcon} style={{ height: "50px", width: "auto", paddingRight: "1rem" }} />)}
-              {this.state.name === "Bench" && (<img src={benchPressIcon} style={{ height: "50px", width: "auto", paddingRight: "1rem" }} />)}
-              {/* <select className="entry-item" placeholder="Exercise name" value={this.state.name} onChange={this.onNameChange}>
+              {this.state.name === "Bench" && (<img src={benchPressIcon} style={{ height: "50px", width: "auto", paddingRight: "1rem" }} />)} */}
+            {/* <select className="entry-item" placeholder="Exercise name" value={this.state.name} onChange={this.onNameChange}>
                 <option value="Squat">Squat</option>
                 <option value="Bench">Bench</option>
                 <option value="Shoulder Press">Shoulder Press</option>
@@ -173,9 +173,9 @@ export default class NewWorkoutForm extends React.Component {
                 <option value="Chin-ups">Chin-ups</option>
               </select> */}
 
-              <Dropdown placeholder='Select Workout' options={workoutOptions} selection value={this.state.name} onChange={this.onNameChange} />
-              <Card.Description>Weight: <button className="increment-button" onClick={this.onDecrementWeight}>-</button>
-                <input onFocus={this.handleFocus} style={center} type="number" className="entry-input entry-item" value={this.state.weight} placeholder="" onChange={this.onWeightChange} />
+            {/* <Dropdown placeholder='Select Workout' options={workoutOptions} selection value={this.state.name} onChange={this.onNameChange} /> */}
+            {/* <Card.Description>Weight: <button className="increment-button" onClick={this.onDecrementWeight}>-</button> */}
+            {/* <input onFocus={this.handleFocus} style={center} type="number" className="entry-input entry-item" value={this.state.weight} placeholder="" onChange={this.onWeightChange} />
                 <button className="increment-button" onClick={this.onIncrementWeight}>+</button>
 
                 Sets: <button className="increment-button" onClick={this.onDecrementSets}>-</button>
@@ -185,8 +185,30 @@ export default class NewWorkoutForm extends React.Component {
                 <input onFocus={this.handleFocus} style={center} type="number" className="entry-input entry-item" value={this.state.reps} placeholder="" onChange={this.onRepsChange} />
                 <button className="increment-button" onClick={this.onIncrementReps}>+</button>
                 <textarea className="text-area entry-item" placeholder="Notes" onChange={this.onNoteChange} />
-                <Button primary className="button">Save Workout</Button>
-              </Card.Description></form>
+                <Button primary className="button">Save Workout</Button> */}
+            {/* </Card.Description> */}
+            {/* </form> */}
+            <Form onSubmit={this.onSubmit}>
+              {this.state.name === "Chin-ups" && (<img src={chinUpIcon} style={{ height: "50px", width: "auto", paddingRight: "1rem" }} />)}
+              {this.state.name === "Squat" && (<img src={squatIcon} style={{ height: "50px", width: "auto", paddingRight: "1rem" }} />)}
+              {this.state.name === "Shoulder Press" && (<img src={shoulderPressIcon} style={{ height: "50px", width: "auto", paddingRight: "1rem" }} />)}
+              {this.state.name === "Deadlift" && (<img src={deadLiftIcon} style={{ height: "50px", width: "auto", paddingRight: "1rem" }} />)}
+              {this.state.name === "Bench" && (<img src={benchPressIcon} style={{ height: "50px", width: "auto", paddingRight: "1rem" }} />)}
+              <Dropdown placeholder='Select Workout' options={workoutOptions} selection value={this.state.name} onChange={this.onNameChange} />
+              <Form.Group>
+                <Form.Field>
+                  <input placeholder='Lbs' onFocus={this.handleFocus} style={center} type="number" className="entry-input entry-item" value={this.state.weight} onChange={this.onWeightChange} />
+                </Form.Field>
+                <Form.Field>
+                  <input placeholder='Sets' onFocus={this.handleFocus} style={center} type="number" className="entry-input entry-item" value={this.state.sets} onChange={this.onSetsChange} />
+                </Form.Field>
+                <Form.Field>
+                  <input placeholder='Reps' onFocus={this.handleFocus} style={center} type="number" className="entry-input entry-item" value={this.state.reps} onChange={this.onRepsChange} />
+                </Form.Field>
+              </Form.Group>
+              <Form.TextArea />
+              <Button type='submit'>Save Workout</Button>
+            </Form>
           </Card.Content>
         </Card>
       </div >
