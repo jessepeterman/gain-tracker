@@ -12,6 +12,6 @@ export default (workouts) => {
     }
   });
   return mostRecentDate;
-}
 
+}
 

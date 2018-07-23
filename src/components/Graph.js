@@ -30,6 +30,8 @@ import {
   VerticalBarSeriesCanvas
 } from 'react-vis';
 
+import { Hint } from 'react-vis';
+
 export default class Example extends React.Component {
   state = {
     useCanvas: false
@@ -39,15 +41,19 @@ export default class Example extends React.Component {
     const { useCanvas } = this.state;
     const content = useCanvas ? 'TOGGLE TO SVG' : 'TOGGLE TO CANVAS';
     const BarSeries = useCanvas ? VerticalBarSeriesCanvas : VerticalBarSeries;
+    const data = {
+      x: 200
+    };
     return (
-      <div className="centered-graph">
+      <div className="centered-graph" >
         {/* <ShowcaseButton
           onClick={() => this.setState({ useCanvas: !useCanvas })}
           buttonContent={content} /> */}
-        <XYPlot
+        < XYPlot
           xType="ordinal"
           width={280}
           height={150}
+          color="#1E96BE"
         // yDistance={25}
         >
           <VerticalGridLines />
@@ -70,8 +76,8 @@ export default class Example extends React.Component {
               { x: 'Deadlift', y: 175 }
 
             ]} /> */}
-        </XYPlot>
-      </div>
+        </XYPlot >
+      </div >
     );
   }
 }

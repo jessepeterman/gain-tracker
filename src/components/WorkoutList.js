@@ -13,13 +13,13 @@ import selectNameFilter from '../selectors/workout-name-filter';
 import selectDateFilter from '../selectors/workout-date-filter';
 import selectLastDateFilter from '../selectors/workout-last-date-filter';
 import sortDateMostRecentFilter from '../selectors/sort-date-most-recent-filter';
+import workoutActiveDates from '../selectors/workout-active-dates';
 import Graph from './Graph';
 import chinUpIcon from '../../public/images/chin-ups.png';
 import squatIcon from '../../public/images/squats.png';
 import shoulderPressIcon from '../../public/images/shoulder-press-icon.png';
 import deadLiftIcon from '../../public/images/deadlift-icon.png';
 import benchPressIcon from '../../public/images/bench-press-icon.png';
-// import selectWorkouts from "../selectors/Workouts";
 
 const now = moment();
 
@@ -45,56 +45,21 @@ export class WorkoutList extends React.Component {
   }
 
   render() {
-    // console.log(this.props.lastWorkout); // assign this date to workoutsbydayarray for auto fill
     return (
       <div>
-        {/* {
-      selectNameFilter(props.workouts, props.text).map((workout) => (
-        <WorkoutItem
-          key={workout.id}
-          {...workout}
-        />
-      ))
-    } */}
-
-        {/* {
-      selectDateFilter(this.props.workouts).map((workout) => (
-        <WorkoutItem
-          key={workout.id}
-          {...workout}
-        />
-      ))
-    } */}
         <div className="zero-margin">
         </div>
         <Segment raised>
           <div className="max-summary centered zero-margin noBottomMargin">
-            {/* Max Weight for {this.props.text}: {selectMaxWorkout(selectNameFilter(this.props.workouts, this.props.text))}lbs */}
-            {/* Max Weight <br />  */}
             <Header as="h2" style={{ paddingRight: "2rem" }}>Current 5-Rep Max</Header>
-            {/* <h2>Current 5-Rep Max</h2> */}
-            {/* <hr /> */}
             <Graph />
             <Segment.Group horizontal>
-              {/* <div>5-rep<br /><span> Max</span></div> */}
               <Segment><Popup trigger={<div><Image src={squatIcon} avatar /> <br /> <span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Squat'), 'weight')}<span className="dashboard-header__label-subitem">lbs</span></span> </div>} content={`Squat on ${moment(selectMaxWorkout(selectNameFilter(this.props.workouts, 'Squat'), 'date')).format('M/D')}`} /></Segment>
               <Segment><Popup trigger={<div><Image src={benchPressIcon} avatar /><br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Bench'), 'weight')}<span className="dashboard-header__label-subitem">lbs</span></span></div>} content={`Bench on ${moment(selectMaxWorkout(selectNameFilter(this.props.workouts, 'Bench'), 'date')).format('M/D')}`} /></Segment>
               <Segment><Popup trigger={<div><Image src={shoulderPressIcon} avatar /><br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Shoulder Press'), 'weight')}<span className="dashboard-header__label-subitem">lbs</span></span></div>} content={`Shoulder Press on ${moment(selectMaxWorkout(selectNameFilter(this.props.workouts, 'Shoulder Press'), 'date')).format('M/D')}`} /></Segment>
               <Segment><Popup trigger={<div><Image src={deadLiftIcon} avatar /><br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Deadlift'), 'weight')}<span className="dashboard-header__label-subitem">lbs</span></span></div>} content={`Deadlift on ${moment(selectMaxWorkout(selectNameFilter(this.props.workouts, 'Deadlift'), 'date')).format('M/D')}`} /></Segment>
             </Segment.Group>
           </div>
-
-          {/* {
-      !props.lastWorkout ? (
-        <span><em>No recent workout activity</em></span>
-      ) : (
-          <WorkoutItem
-        key={props.lastWorkout.id}
-        {...props.lastWorkout}
-      />
-        )
-  } */}
-
         </Segment>
         {
           <div>
@@ -102,14 +67,15 @@ export class WorkoutList extends React.Component {
               key={this.props.workouts.toString()}
               workouts={this.props.workoutsLastDate}
             />
-            {/* <SingleDatePicker
+            <SingleDatePicker
               date={this.state.date}
               onDateChange={this.onDateChange}
               focused={this.state.calendarFocused}
               onFocusChange={this.onFocusChange}
+              isDayHighlighted={day => this.props.activeDates.includes(day.format('YYYYMMDD'))}
               numberOfMonths={1}
               isOutsideRange={() => { false }}
-            /> */}
+            />
             <Segment raised style={{ textAlign: 'center' }}>
               <h3>Workout history</h3>
               <div className="card-container">
@@ -126,7 +92,7 @@ export class WorkoutList extends React.Component {
 
 
                     {
-                      this.props.sortedWorkouts.map((workout) => (
+                      this.props.workoutsSortedBySingleDatePicker.map((workout) => (
                         <WorkoutItem
                           key={workout.id}
                           {...workout}
@@ -139,34 +105,20 @@ export class WorkoutList extends React.Component {
             </Segment>
           </div>
         }
-
-        {/* <div className="card-container"> */}
-        {
-          // this.props.workouts.map((workout) => (
-          //   <WorkoutItem
-          //     key={workout.id}
-          //     {...workout}
-          //   />
-          // ))
-        }
-
-        {/* </div> */}
-
-
       </div >
     );
   };
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
   return {
     workouts: state.workouts,
-    // text: 'Squat',
     lastWorkout: state.workouts[state.workouts.length - 1],
     lastDate: selectLastDateFilter(state.workouts),
     sortedWorkouts: sortDateMostRecentFilter(state.workouts),
-    workoutsLastDate: selectDateFilter(state.workouts, selectLastDateFilter(state.workouts))
-    // workoutsSorted: sortDateMostRecentFilter()
+    workoutsLastDate: selectDateFilter(state.workouts, selectLastDateFilter(state.workouts)),
+    workoutsSortedBySingleDatePicker: selectDateFilter(state.workouts, state.filters.singleDate),
+    activeDates: workoutActiveDates(state.workouts)
   };
 };
 
