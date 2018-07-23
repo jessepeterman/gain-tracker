@@ -40,9 +40,14 @@ export class WorkoutList extends React.Component {
     this.setState(() => ({ calendarFocused: focused }));
   }
   componentDidMount() {
-    this.props.setSingleDate(this.props.workoutLastDate);
-    this.setState(() => ({ date: this.props.workoutLastDate }));
+    // if (this.props.lastDate) {
+    //   this.props.setSingleDate(this.props.lastDate);
+    //   this.setState(() => ({ date: this.props.lastDate }));
+    // }
   }
+
+  // this.props.setSingleDate(this.props.workoutLastDate);
+  // this.setState(() => ({ date: this.props.workoutLastDate }));
 
   render() {
     return (
@@ -73,34 +78,38 @@ export class WorkoutList extends React.Component {
               focused={this.state.calendarFocused}
               onFocusChange={this.onFocusChange}
               isDayHighlighted={day => this.props.activeDates.includes(day.format('YYYYMMDD'))}
+              isDayBlocked={day => !this.props.activeDates.includes(day.format('YYYYMMDD'))}
               numberOfMonths={1}
               isOutsideRange={() => { false }}
             />
             <Segment raised style={{ textAlign: 'center' }}>
               <h3>Workout history</h3>
               <div className="card-container">
-                <Table striped textAlign='center'>
-                  <Table.Header>
-                    <Table.Row>
-                      <Table.HeaderCell>Date</Table.HeaderCell>
-                      <Table.HeaderCell>Workout</Table.HeaderCell>
-                      <Table.HeaderCell>Weight</Table.HeaderCell>
-                      <Table.HeaderCell>Reps/Sets</Table.HeaderCell>
-                    </Table.Row>
-                  </Table.Header>
-                  <Table.Body>
+                {this.state.date ? (
+
+                  <Table striped textAlign='center'>
+                    <Table.Header>
+                      <Table.Row>
+                        <Table.HeaderCell>Date</Table.HeaderCell>
+                        <Table.HeaderCell>Workout</Table.HeaderCell>
+                        <Table.HeaderCell>Weight</Table.HeaderCell>
+                        <Table.HeaderCell>Reps/Sets</Table.HeaderCell>
+                      </Table.Row>
+                    </Table.Header>
+                    <Table.Body>
 
 
-                    {
-                      this.props.workoutsSortedBySingleDatePicker.map((workout) => (
-                        <WorkoutItem
-                          key={workout.id}
-                          {...workout}
-                        />
-                      ))
-                    }
-                  </Table.Body>
-                </Table>
+                      {
+                        this.props.workoutsSortedBySingleDatePicker.map((workout) => (
+                          <WorkoutItem
+                            key={workout.id}
+                            {...workout}
+                          />
+                        ))
+                      }
+                    </Table.Body>
+                  </Table>
+                ) : (<em>Select a date to view workout data</em>)}
               </div>
             </Segment>
           </div>
