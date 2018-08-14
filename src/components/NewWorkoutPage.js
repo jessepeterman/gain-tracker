@@ -9,9 +9,15 @@ export class NewWorkoutPage extends React.Component {
     super(props);
 
     this.state = {
-      message: false
+      message: false,
+      messageTimer: undefined
     };
   }
+
+  componentWillUnmount() {
+    clearTimeout(this.messageTimer);
+  }
+
 
 
   onSubmit = (newWorkout) => {
@@ -19,9 +25,9 @@ export class NewWorkoutPage extends React.Component {
     this.setState((prevState) => {
       return { message: true }
     });
-    setTimeout(() => {
-      this.setState((prevState) => {
-        return { message: false }
+    this.messageTimer = setTimeout(() => {
+      this.setState(() => {
+        return { message: false };
       });
     }, 1500);
     // this.props.history.push('/dashboard');
