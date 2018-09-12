@@ -43,7 +43,7 @@ export default class Example extends React.Component {
 
 
   render() {
-    const { squat, bench, shoulderPress, deadlift } = this.props.data;
+    const { squat, bench, shoulderPress, deadlift, chinups } = this.props.data;
     const { useCanvas } = this.state;
     const content = useCanvas ? 'TOGGLE TO SVG' : 'TOGGLE TO CANVAS';
     const BarSeries = useCanvas ? VerticalBarSeriesCanvas : VerticalBarSeries;
@@ -70,7 +70,7 @@ export default class Example extends React.Component {
               { x: 'Bench', y: bench || 0 },
               { x: 'S Press', y: shoulderPress || 0 },
               { x: 'DL', y: deadlift || 0 },
-              { x: 'C-Ups', y: 10 }
+              { x: 'C-Ups', y: chinups || 0 }
             ]} />
         </XYPlot >
       </div >)

@@ -54,6 +54,7 @@ export class WorkoutList extends React.Component {
     const maxBench = this.getMax('Bench');
     const maxShoulderPress = this.getMax('Shoulder Press');
     const maxDeadlift = this.getMax('Deadlift');
+    const maxChinups = this.getMax('Chinups');
 
     const maxData = {
       squat: maxSquat,
