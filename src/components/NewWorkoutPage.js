@@ -20,7 +20,7 @@ export class NewWorkoutPage extends React.Component {
 
 
 
-  onSubmit = (newWorkout) => {
+  onSubmit = newWorkout => {
     this.props.startAddWorkout(newWorkout);
     this.setState((prevState) => {
       return { message: true }

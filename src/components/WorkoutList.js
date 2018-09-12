@@ -28,7 +28,8 @@ export class WorkoutList extends React.Component {
     super();
     this.state = {
       date: moment(),
-      calendarFocused: false
+      calendarFocused: false,
+      maxData: {}
     }
   }
 
@@ -39,17 +40,30 @@ export class WorkoutList extends React.Component {
   onFocusChange = ({ focused }) => {
     this.setState(() => ({ calendarFocused: focused }));
   }
-  componentDidMount() {
-    // if (this.props.lastDate) {
-    //   this.props.setSingleDate(this.props.lastDate);
-    //   this.setState(() => ({ date: this.props.lastDate }));
-    // }
+
+  getMax = (name) => {
+    return selectMaxWorkout(selectNameFilter(this.props.workouts, name), 'weight');
   }
 
-  // this.props.setSingleDate(this.props.workoutLastDate);
-  // this.setState(() => ({ date: this.props.workoutLastDate }));
+  componentDidMount() {
+
+  }
 
   render() {
+    const maxSquat = this.getMax('Squat');
+    const maxBench = this.getMax('Bench');
+    const maxShoulderPress = this.getMax('Shoulder Press');
+    const maxDeadlift = this.getMax('Deadlift');
+
+    const maxData = {
+      squat: maxSquat,
+      bench: maxBench,
+      shoulderPress: maxShoulderPress,
+      deadlift: maxDeadlift
+    };
+
+    console.log(maxData);
+
     return (
       <div>
         <div className="zero-margin">
@@ -57,12 +71,12 @@ export class WorkoutList extends React.Component {
         <Segment raised>
           <div className="max-summary centered zero-margin noBottomMargin">
             <Header as="h2" style={{ paddingRight: "2rem" }}>Current 5-Rep Max</Header>
-            <Graph />
+            <Graph data={maxData} />
             <Segment.Group horizontal>
-              <Segment><Popup trigger={<div><Image src={squatIcon} avatar /> <br /> <span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Squat'), 'weight')}<span className="dashboard-header__label-subitem">lbs</span></span> </div>} content={`Squat on ${moment(selectMaxWorkout(selectNameFilter(this.props.workouts, 'Squat'), 'date')).format('M/D')}`} /></Segment>
-              <Segment><Popup trigger={<div><Image src={benchPressIcon} avatar /><br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Bench'), 'weight')}<span className="dashboard-header__label-subitem">lbs</span></span></div>} content={`Bench on ${moment(selectMaxWorkout(selectNameFilter(this.props.workouts, 'Bench'), 'date')).format('M/D')}`} /></Segment>
-              <Segment><Popup trigger={<div><Image src={shoulderPressIcon} avatar /><br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Shoulder Press'), 'weight')}<span className="dashboard-header__label-subitem">lbs</span></span></div>} content={`Shoulder Press on ${moment(selectMaxWorkout(selectNameFilter(this.props.workouts, 'Shoulder Press'), 'date')).format('M/D')}`} /></Segment>
-              <Segment><Popup trigger={<div><Image src={deadLiftIcon} avatar /><br /><span>{selectMaxWorkout(selectNameFilter(this.props.workouts, 'Deadlift'), 'weight')}<span className="dashboard-header__label-subitem">lbs</span></span></div>} content={`Deadlift on ${moment(selectMaxWorkout(selectNameFilter(this.props.workouts, 'Deadlift'), 'date')).format('M/D')}`} /></Segment>
+              <Segment><Popup trigger={<div><Image src={squatIcon} avatar /> <br /> <span>{maxData.squat}<span className="dashboard-header__label-subitem">lbs</span></span> </div>} content={`Squat on ${moment(selectMaxWorkout(selectNameFilter(this.props.workouts, 'Squat'), 'date')).format('M/D')}`} /></Segment>
+              <Segment><Popup trigger={<div><Image src={benchPressIcon} avatar /><br /><span>{maxData.bench}<span className="dashboard-header__label-subitem">lbs</span></span></div>} content={`Bench on ${moment(selectMaxWorkout(selectNameFilter(this.props.workouts, 'Bench'), 'date')).format('M/D')}`} /></Segment>
+              <Segment><Popup trigger={<div><Image src={shoulderPressIcon} avatar /><br /><span>{maxData.shoulderPress}<span className="dashboard-header__label-subitem">lbs</span></span></div>} content={`Shoulder Press on ${moment(selectMaxWorkout(selectNameFilter(this.props.workouts, 'Shoulder Press'), 'date')).format('M/D')}`} /></Segment>
+              <Segment><Popup trigger={<div><Image src={deadLiftIcon} avatar /><br /><span>{maxData.deadlift}<span className="dashboard-header__label-subitem">lbs</span></span></div>} content={`Deadlift on ${moment(selectMaxWorkout(selectNameFilter(this.props.workouts, 'Deadlift'), 'date')).format('M/D')}`} /></Segment>
             </Segment.Group>
           </div>
         </Segment>

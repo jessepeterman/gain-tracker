@@ -33,28 +33,31 @@ import {
 import { Hint } from 'react-vis';
 
 export default class Example extends React.Component {
-  state = {
-    useCanvas: false
+  constructor(props) {
+    super(props);
+    this.state = {
+      useCanvas: false,
+      data: this.props.data
+    }
   }
 
+
   render() {
+    const { squat, bench, shoulderPress, deadlift } = this.props.data;
     const { useCanvas } = this.state;
     const content = useCanvas ? 'TOGGLE TO SVG' : 'TOGGLE TO CANVAS';
     const BarSeries = useCanvas ? VerticalBarSeriesCanvas : VerticalBarSeries;
     const data = {
       x: 200
     };
-    return (
+
+    return this.props.data && (
       <div className="centered-graph" >
-        {/* <ShowcaseButton
-          onClick={() => this.setState({ useCanvas: !useCanvas })}
-          buttonContent={content} /> */}
         < XYPlot
           xType="ordinal"
           width={280}
           height={150}
           color="#1E96BE"
-        // yDistance={25}
         >
           <VerticalGridLines />
           <HorizontalGridLines />
@@ -63,24 +66,17 @@ export default class Example extends React.Component {
           <BarSeries
             className="vertical-bar-series"
             data={[
-              { x: 'Squat', y: 205 },
-              { x: 'Bench', y: 135 },
-              { x: 'S Press', y: 80 },
-              { x: 'DL', y: 225 },
+              { x: 'Squat', y: squat || 0 },
+              { x: 'Bench', y: bench || 0 },
+              { x: 'S Press', y: shoulderPress || 0 },
+              { x: 'DL', y: deadlift || 0 },
               { x: 'C-Ups', y: 10 }
             ]} />
-          {/* <BarSeries
-            data={[
-              { x: 'Squat', y: 205 },
-              { x: 'Bench', y: 145 },
-              { x: 'Deadlift', y: 175 }
-
-            ]} /> */}
         </XYPlot >
-      </div >
-    );
+      </div >)
   }
 }
+
 
 // Copyright (c) 2016 - 2017 Uber Technologies, Inc.
 //
