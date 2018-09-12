@@ -63,8 +63,6 @@ export class WorkoutList extends React.Component {
       deadlift: maxDeadlift
     };
 
-    console.log(maxData);
-
     return (
       <div>
         <div className="zero-margin">
